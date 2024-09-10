@@ -30,5 +30,11 @@ def incluirPalavras():
 def escolhePalavra(palavras):
     return random.choice(palavras)
 
+palavras = carregasPalavras()
 
-incluirPalavras()
+palavra_escolhida = escolhePalavra(palavras)
+print(f"A palavra escolhida é: {palavra_escolhida}")
+
+
+
+#incluirPalavras()
