@@ -30,11 +30,20 @@ def incluirPalavras():
 def escolhePalavra(palavras):
     return random.choice(palavras)
 
+
+def excluirPalavra():
+    palavras = carregasPalavras()
+    palavraExcluida = input("Qual palavra deseja excluir?" )
+    if palavraExcluida in palavras:
+        palavras.remove(palavraExcluida)
+        with open('palavras.txt', 'w') as arquivodePalavras: # o argumento 'w' de write, ele cria e sobreescre arquivos
+            for palavra in palavras: #agora ele vai atualizar a lista, sem a palavra excluida
+                arquivodePalavras.write(palavra + '\n')
+        print("Palavra excluida com sucesso!")
+
+
 palavras = carregasPalavras()
 
 palavra_escolhida = escolhePalavra(palavras)
 print(f"A palavra escolhida é: {palavra_escolhida}")
-
-
-
-#incluirPalavras()
+excluirPalavra()

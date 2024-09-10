@@ -1,4 +1,3 @@
-python
 edecio
 eduardo
 gladimir
@@ -8,3 +7,4 @@ sistemas
 programação
 codigos
 visual studio code
+python
