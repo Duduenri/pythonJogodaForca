@@ -10,9 +10,16 @@
 # arquivo texto. Permitir a exibição do ranking dos jogadores
 
 
+#menu vai ter: 1. Jogar - 2. Incluir Palavras 3. Excluir Palavras
+
 import os
 import random
 import time
+
+
+nome = input("Nome do Jogador:  ")
+pontos = 0
+hora_inicial = time.time()
 
 def carregasPalavras():
     palavras = []
@@ -42,8 +49,35 @@ def excluirPalavra():
         print("Palavra excluida com sucesso!")
 
 
+
+
 palavras = carregasPalavras()
 
 palavra_escolhida = escolhePalavra(palavras)
 print(f"A palavra escolhida é: {palavra_escolhida}")
 excluirPalavra()
+
+
+def menu():
+    while True:
+        print("\nMenu:")
+        print("1. Jogar")
+        print("2. Incluir Palavra")
+        print("3. Excluir Palavra")
+        print("4. Sair")
+        selecao = input("Escolha sua opção: ").strip()
+
+        if selecao == '1':
+            print("Tamo terminando")           
+        elif selecao == "2":
+            incluirPalavras()
+        elif selecao == "3":
+            excluirPalavra()
+        elif selecao == "4":
+            print("Saindo...")
+            break
+        else:
+            print("Opção inválida")
+
+
+menu()
