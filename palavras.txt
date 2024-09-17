@@ -8,3 +8,6 @@ programação
 codigos
 visual studio code
 python
+Vasco da gama
+duduzin
+teste

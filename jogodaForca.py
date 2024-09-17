@@ -12,7 +12,7 @@
 
 #menu vai ter: 1. Jogar - 2. Incluir Palavras 3. Excluir Palavras
 
-import os
+#import os
 import random
 import time
 
@@ -48,14 +48,30 @@ def excluirPalavra():
                 arquivodePalavras.write(palavra + '\n')
         print("Palavra excluida com sucesso!")
 
+def jogar():
+    palavras = carregasPalavras()
+    palavra_escolhida = escolhePalavra(palavras)
+    ocultando_Palavra = ["_"] * len(palavra_escolhida) #length = tamanho da palavra
+    tentativas = 7
 
+    while tentativas > 0:
+        print(" ".join(ocultando_Palavra)) #ele concatena os elementos de uma strinda, vai ser ______ ao inves de '_', '_','_'
+        letra = input("Qual letra deseja tentar? ").strip().lower() # strip() = função. remove espaços em brancos no INICIO OU FIM de cada palavra 
 
+        if len(letra) != 1: #verifica se o tamanho da letra é diferente de uma caracterere só
+            print("Por favor, digite apenas uma letra.")
+            continue
+
+        if letra in palavra_escolhida:
+            for i in range(len(palavra_escolhida)): #pela a letra e percorre a palavra escolhida
+                if palavra_escolhida[i] == letra: #verifica se letra digitada pe igual a letra correspondendo na palavra escolhida
+                    ocultando_Palavra[i] = letra #A linha ocultando_Palavra[i] = letra serve para atualizar a lista ocultando_Palavra com a letra correta na posição i.
 
 palavras = carregasPalavras()
 
 palavra_escolhida = escolhePalavra(palavras)
-print(f"A palavra escolhida é: {palavra_escolhida}")
-excluirPalavra()
+#print(f"A palavra escolhida é: {palavra_escolhida}")
+#excluirPalavra()
 
 
 def menu():
@@ -68,7 +84,7 @@ def menu():
         selecao = input("Escolha sua opção: ").strip()
 
         if selecao == '1':
-            print("Tamo terminando")           
+            jogar()         
         elif selecao == "2":
             incluirPalavras()
         elif selecao == "3":
