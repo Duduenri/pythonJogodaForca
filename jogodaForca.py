@@ -53,6 +53,8 @@ def jogar():
     palavra_escolhida = escolhePalavra(palavras)
     ocultando_Palavra = ["_"] * len(palavra_escolhida) #length = tamanho da palavra
     tentativas = 7
+    letras_tentadas = set() #set é uma coleção não ordenada de elementos
+
 
     while tentativas > 0:
         print(" ".join(ocultando_Palavra)) #ele concatena os elementos de uma strinda, vai ser ______ ao inves de '_', '_','_'
@@ -62,10 +64,30 @@ def jogar():
             print("Por favor, digite apenas uma letra.")
             continue
 
+        ## não deixar repetir letra, isso tem q vir primeiro para verificar se a letra não esta no letras tentadas
+        if letra in letras_tentadas:
+            print("Você já tentou essa letra")
+            continue
+
+        letras_tentadas.add(letra) 
+
         if letra in palavra_escolhida:
             for i in range(len(palavra_escolhida)): #pela a letra e percorre a palavra escolhida
                 if palavra_escolhida[i] == letra: #verifica se letra digitada pe igual a letra correspondendo na palavra escolhida
                     ocultando_Palavra[i] = letra #A linha ocultando_Palavra[i] = letra serve para atualizar a lista ocultando_Palavra com a letra correta na posição i.
+
+        else: 
+            print("Letra não encontrada")
+            tentativas -= 1 #-= é subtração no local (subtração in-place) ele diminui a variavel e retorna com a resposta
+            #tentativas = tentativas - 1 (seria a mesma coisa)
+            print(f"Tentativas restantes: {tentativas}")
+
+        if "_" not in ocultando_Palavra:
+            print("Parabéns voce completou a tarefa")
+            pontos += 1 #é outra forma de usar o operador de atribuição in-place
+            #pontos = pontos + 1
+            break
+
 
 palavras = carregasPalavras()
 
