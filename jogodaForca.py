@@ -18,7 +18,7 @@ import time
 
 
 nome = input("Nome do Jogador:  ")
-pontos = 0
+
 hora_inicial = time.time()
 
 def carregasPalavras():
@@ -54,6 +54,7 @@ def jogar():
     ocultando_Palavra = ["_"] * len(palavra_escolhida) #length = tamanho da palavra
     tentativas = 7
     letras_tentadas = set() #set é uma coleção não ordenada de elementos
+    pontos = 0
 
 
     while tentativas > 0:
@@ -66,17 +67,20 @@ def jogar():
 
         ## não deixar repetir letra, isso tem q vir primeiro para verificar se a letra não esta no letras tentadas
         if letra in letras_tentadas:
+            pontos -= 3
             print("Você já tentou essa letra")
             continue
 
         letras_tentadas.add(letra) 
 
         if letra in palavra_escolhida:
+            pontos += 10 #10 pontos se 
             for i in range(len(palavra_escolhida)): #pela a letra e percorre a palavra escolhida
                 if palavra_escolhida[i] == letra: #verifica se letra digitada pe igual a letra correspondendo na palavra escolhida
                     ocultando_Palavra[i] = letra #A linha ocultando_Palavra[i] = letra serve para atualizar a lista ocultando_Palavra com a letra correta na posição i.
 
         else: 
+            pontos -= 5
             print("Letra não encontrada")
             tentativas -= 1 #-= é subtração no local (subtração in-place) ele diminui a variavel e retorna com a resposta
             #tentativas = tentativas - 1 (seria a mesma coisa)
@@ -84,14 +88,16 @@ def jogar():
 
         if "_" not in ocultando_Palavra:
             print("Parabéns voce completou a tarefa")
-            pontos += 1 #é outra forma de usar o operador de atribuição in-place
+            pontos += 100 #é outra forma de usar o operador de atribuição in-place
             #pontos = pontos + 1
             break
 
+        if tentativas == 0:
+            print(f"Game Over! A palavra era {palavra_escolhida} e sua pontuação foi {pontos}")
 
-palavras = carregasPalavras()
 
-palavra_escolhida = escolhePalavra(palavras)
+
+#palavra_escolhida = escolhePalavra(palavras)
 #print(f"A palavra escolhida é: {palavra_escolhida}")
 #excluirPalavra()
 
@@ -117,5 +123,6 @@ def menu():
         else:
             print("Opção inválida")
 
+palavras = carregasPalavras()
 
 menu()
