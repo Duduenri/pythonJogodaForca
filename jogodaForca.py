@@ -95,7 +95,22 @@ def jogar():
         if tentativas == 0:
             print(f"Game Over! A palavra era {palavra_escolhida} e sua pontuação foi {pontos}")
 
+    with open("ranking.txt", "a") as arquivo:
+        arquivo.write(f"{nome}: {pontos}\n")
+    print("Pontuação salva no ranking!")
 
+def exibirRanking():
+    try:
+        with open("ranking.txt", "r") as arquivo:
+            ranking = [linha.strip().split(": ") for linha in arquivo.readlines()] #strip remove espaços em branco
+            ranking = [(nome, int(pontos)) for nome, pontos in ranking]
+            ranking.sort(key=lambda x: x[1], reverse=True) #reverse para colocar em ordem desc
+#sort ordena a lista na função, e o x representa cada elemento
+            print("\nRanking dos Jogadores:")
+            for nome, pontos in ranking:
+                print(f"{nome}: {pontos}")
+    except FileNotFoundError:
+        print("Nenhum ranking encontrado. Jogue uma partida para criar o ranking.")
 
 #palavra_escolhida = escolhePalavra(palavras)
 #print(f"A palavra escolhida é: {palavra_escolhida}")
@@ -108,21 +123,24 @@ def menu():
         print("1. Jogar")
         print("2. Incluir Palavra")
         print("3. Excluir Palavra")
-        print("4. Sair")
+        print("4. Exibir Ranking")
+        print("5. Sair")
         selecao = input("Escolha sua opção: ").strip()
 
         if selecao == '1':
-            jogar()         
+            jogar()
         elif selecao == "2":
             incluirPalavras()
         elif selecao == "3":
             excluirPalavra()
         elif selecao == "4":
+            exibirRanking()
+        elif selecao == "5":
             print("Saindo...")
             break
         else:
             print("Opção inválida")
-
+            
 palavras = carregasPalavras()
 
 menu()

@@ -1,0 +1,3 @@
+Dudu: 120
+Thai: 155
+Eduardo: -31
