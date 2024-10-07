@@ -56,9 +56,16 @@ def jogar():
     letras_tentadas = set() #set é uma coleção não ordenada de elementos
     pontos = 0
 
+    print("  _______")
+    print(" /      |")
+    print("/       |")
+    print("|       |")
+    print("|        ")
+    print("|")
+
 
     while tentativas > 0:
-        print(" ".join(ocultando_Palavra)) #ele concatena os elementos de uma strinda, vai ser ______ ao inves de '_', '_','_'
+        print(" ".join(ocultando_Palavra)) #ele concatena os elementos de uma string, vai ser ______ ao inves de '_', '_','_'
         letra = input("Qual letra deseja tentar? ").strip().lower() # strip() = função. remove espaços em brancos no INICIO OU FIM de cada palavra 
 
         if len(letra) != 1: #verifica se o tamanho da letra é diferente de uma caracterere só
@@ -84,7 +91,52 @@ def jogar():
             print("Letra não encontrada")
             tentativas -= 1 #-= é subtração no local (subtração in-place) ele diminui a variavel e retorna com a resposta
             #tentativas = tentativas - 1 (seria a mesma coisa)
-            print(f"Tentativas restantes: {tentativas}")
+            if tentativas == 6:
+                print("  _______")
+                print(" /      |")
+                print("/       |")
+                print("|       |")
+                print("|       O")
+                print("|       ")
+            elif tentativas == 5:
+                print("  _______")
+                print(" /      |")
+                print("/       |")
+                print("|       |")
+                print("|       O")
+                print("|       |")
+            elif tentativas == 4:
+                print("  _______")
+                print(" /      |")
+                print("/       |")
+                print("|       |")
+                print("|       O")
+                print("|      /|")
+            elif tentativas == 3:
+                print("  _______")
+                print(" /      |")
+                print("/       |")
+                print("|       |")
+                print("|       O")
+                print("|      /|")
+                print("|      / ")
+            elif tentativas == 2:
+                print("  _______")
+                print(" /      |")
+                print("/       |")
+                print("|       |")
+                print("|       O")
+                print("|      /|\\")
+                print("|      / ")
+            elif tentativas == 1:
+                print("  _______")
+                print(" /      |")
+                print("/       |")
+                print("|       |")
+                print("|       O")
+                print("|      /|\\")
+                print("|      / \\")
+                print("|      ^")
 
         if "_" not in ocultando_Palavra:
             print("Parabéns voce completou a tarefa")

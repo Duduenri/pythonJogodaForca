@@ -1,3 +1,5 @@
 Dudu: 120
 Thai: 155
 Eduardo: -31
+Teste na aula: -15
+Teste aulinha: 170
